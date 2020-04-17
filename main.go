@@ -4,24 +4,25 @@ package main
 
 import "log"
 
-// pkg defines the package name, version, and dependencies
-type pkg struct {
+// Pkg defines the package name, version, and dependencies
+type Pkg struct {
 	name         string
 	version      string
-	dependencies []pkg
+	dependencies []Pkg
 }
 
-func makeFakeList() *pkg {
-	pkgs := pkg{
+// MakeFakeList returns a list of fake packages and deps
+func MakeFakeList() *Pkg {
+	pkgs := Pkg{
 		name:    "golang",
 		version: "2:1.12~1ubuntu1",
-		dependencies: []pkg{
+		dependencies: []Pkg{
 			{name: "golang-doc", version: "2:1.12~1ubuntu1"},
 			{name: "golang-src", version: "2:1.12~1ubuntu1"},
 			{
 				name:         "golang-go",
 				version:      "2:1.12~1ubuntu1",
-				dependencies: []pkg{{name: "gcc", version: "4:9.2.1-3.1ubuntu1"}}},
+				dependencies: []Pkg{{name: "gcc", version: "4:9.2.1-3.1ubuntu1"}}},
 		},
 	}
 
@@ -29,7 +30,7 @@ func makeFakeList() *pkg {
 }
 
 func main() {
-	pkgs := makeFakeList()
+	pkgs := MakeFakeList()
 
 	log.Println(pkgs)
 }
